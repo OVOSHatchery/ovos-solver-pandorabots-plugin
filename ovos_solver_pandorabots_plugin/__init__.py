@@ -13,8 +13,9 @@ from ovos_utils.log import LOG
 class PandoraBotsSolver(AbstractSolver):
     bots = all_the_chatbots.bot_map()
 
-    def __init__(self):
-        super().__init__(name="PandoraBots", priority=97, enable_cache=False, enable_tx=True)
+    def __init__(self, config=None):
+        super().__init__(name="PandoraBots", priority=97, config=config,
+                         enable_cache=False, enable_tx=True)
         self.default_bot = self.config.get("bot", "professor")
 
     # officially exported Solver methods
