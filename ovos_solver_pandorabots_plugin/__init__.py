@@ -1,21 +1,14 @@
-from os import listdir, remove as remove_file
-from os.path import dirname, isfile
-from os.path import join, dirname
-
 import all_the_chatbots
-import os
-import random
-from datetime import date
-from neon_solvers import AbstractSolver
-from ovos_utils.log import LOG
+from ovos_plugin_manager.templates.solvers import QuestionSolver
 
 
-class PandoraBotsSolver(AbstractSolver):
+class PandoraBotsSolver(QuestionSolver):
+    enable_tx = True
+    priority = 97
     bots = all_the_chatbots.bot_map()
 
     def __init__(self, config=None):
-        super().__init__(name="PandoraBots", priority=97, config=config,
-                         enable_cache=False, enable_tx=True)
+        super().__init__(config)
         self.default_bot = self.config.get("bot", "professor")
 
     # officially exported Solver methods
